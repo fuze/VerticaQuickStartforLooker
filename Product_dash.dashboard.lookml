@@ -1,15 +1,15 @@
 - dashboard: product_dashboard
   title: Product Dashboard
   layout: grid
-  rows: 
+  rows:
     - elements: [total_online_sales, total_store_sales]
       height: 190
     - elements: [online_sales_yoy_comparison, store_sales_yoy_comparison]
       height: 400
     - elements: [top_10_products_online, top_10_products_store]
       height: 400
- 
-    
+
+
 
   filters:
   - name: date
@@ -21,13 +21,13 @@
     type: field_filter
     explore: store_sales_fact
     field: store_sales_fact.measure_type
-    default_value: Sales  
+    default_value: Sales
   - name: product_type
     title: "Product Category"
     type: field_filter
     explore: online_sales_fact
     field: product_dimension.category_description
-     
+
 
   elements:
   - name: total_online_sales
@@ -38,14 +38,14 @@
     measures: [online_sales_fact.measure_total]
     filters:
       online_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       date: date_dimension_sales.date_date
       measure_type: online_sales_fact.measure_type
       product_type: product_dimension.category_description
     limit: 500
     width: 6
     #height: 2
-    
+
   - name: total_store_sales
     title: 'Total Store Sales'
     type: single_value
@@ -55,15 +55,15 @@
     measures: [store_sales_fact.measure_total]
     filters:
       store_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       date: date_dimension.date_date
       measure_type: store_sales_fact.measure_type
       product_type: product_dimension.category_description
     limit: 500
-    width: 6 
+    width: 6
     #height: 2
-    
-  
+
+
   - name: online_sales_yoy_comparison
     title: "Online Sales Year over Year Comparison"
     type: looker_line
@@ -74,10 +74,10 @@
     measures: [online_sales_fact.measure_total]
     filters:
       online_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       date: date_dimension_sales.date_date
       measure_type: online_sales_fact.measure_type
-      product_type: product_dimension.category_description    
+      product_type: product_dimension.category_description
     sorts: [date_dimension_sales.date_month_num]
     limit: 500
     show_null_points: true
@@ -89,7 +89,7 @@
     colors: ['#635189','#1ea8df','#49cec1','#e9b404','#dc7350','#ed6168']
     interpolation: linear
     width: 12
-    
+
   - name: store_sales_yoy_comparison
     title: "Store Sales Year over Year Comparison"
     type: looker_line
@@ -100,10 +100,10 @@
     measures: [store_sales_fact.measure_total]
     filters:
       store_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       date: date_dimension.date_date
       measure_type: store_sales_fact.measure_type
-      product_type: product_dimension.category_description    
+      product_type: product_dimension.category_description
     sorts: [date_dimension.date_month_num]
     limit: 500
     show_null_points: true
@@ -114,7 +114,7 @@
     colors: ['#635189','#1ea8df','#49cec1','#e9b404','#dc7350','#ed6168']
     interpolation: linear
     width: 12
-    
+
   - name: top_10_products_online
     title: "Top 10 Products in Online sales"
     type: looker_bar
@@ -124,10 +124,10 @@
     measures: [online_sales_fact.measure_total]
     filters:
       online_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       date: date_dimension_sales.date_date
       measure_type: online_sales_fact.measure_type
-      product_type: product_dimension.category_description    
+      product_type: product_dimension.category_description
     sorts: [online_sales_fact.measure_total desc]
     limit: 10
     column_limit: ''
@@ -145,7 +145,7 @@
     show_x_axis_ticks: true
     x_axis_scale: auto
     show_null_labels: false
-    
+
   - name: top_10_products_store
     title: "Top 10 Products in Store Sales"
     type: looker_bar
@@ -155,10 +155,10 @@
     measures: [store_sales_fact.measure_total]
     filters:
       store_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       date: date_dimension.date_date
       measure_type: store_sales_fact.measure_type
-      product_type: product_dimension.category_description    
+      product_type: product_dimension.category_description
     sorts: [store_sales_fact.measure_total desc]
     limit: 10
     column_limit: ''
@@ -176,4 +176,3 @@
     show_x_axis_ticks: true
     x_axis_scale: auto
     show_null_labels: false
-    

@@ -1,8 +1,8 @@
 - dashboard: inventory_dashboard
   title: Inventory Dashboard
-  
+
   layout: grid
-  rows: 
+  rows:
     - elements: [average_quantity_in_stock, min_quantity_in_stock, max_quantity_in_stock]
       height: 150
     - elements: [total_inventory_overtime, Breakdown_by_warehouse_location]
@@ -17,7 +17,7 @@
     type: date_filter
     default_value: 2003/01/01 to 2007/12/31
 
-  
+
   elements:
   - name: average_quantity_in_stock
     title: Average Quantity in Stock
@@ -25,7 +25,7 @@
     model: vmart1
     explore: inventory_fact
     measures: [inventory_fact.average_qty_in_stock]
-    listen: 
+    listen:
       date: date_dimension.date_date
     limit: 500
     column_limit: ''
@@ -37,7 +37,7 @@
     model: vmart1
     explore: inventory_fact
     measures: [inventory_fact.min_qty_in_stock]
-    listen: 
+    listen:
       date: date_dimension.date_date
     limit: 500
     column_limit: ''
@@ -49,7 +49,7 @@
     model: vmart1
     explore: inventory_fact
     measures: [inventory_fact.max_qty_in_stock]
-    listen: 
+    listen:
       date: date_dimension.date_date
     limit: 500
     column_limit: ''
@@ -62,7 +62,7 @@
     explore: inventory_fact
     dimensions: [product_dimension.category_description]
     measures: [inventory_fact.average_qty_in_stock]
-    listen: 
+    listen:
       date: date_dimension.date_date
     sorts: [inventory_fact.average_qty_in_stock desc]
     limit: 500
@@ -81,17 +81,17 @@
     show_x_axis_ticks: true
     x_axis_scale: auto
 
-    
-    
+
+
   - name: breakdown_by_department
-    title: Inventory Breakdown by Product Department 
+    title: Inventory Breakdown by Product Department
     type: looker_bar
     model: vmart1
     explore: inventory_fact
     dimensions: [product_dimension.category_description, product_dimension.store_department_description]
     pivots: [product_dimension.store_department_description]
     measures: [inventory_fact.average_qty_in_stock]
-    listen: 
+    listen:
       date: date_dimension.date_date
     sorts: [product_dimension.category_description desc]
     limit: 500
@@ -113,16 +113,16 @@
     show_null_points: true
     y_axis_tick_density: default
     y_axis_tick_density_custom: 5
-    
-    
+
+
   - name: Breakdown_by_warehouse_name
-    title: Inventory Breakdown by Warehouse Name 
+    title: Inventory Breakdown by Warehouse Name
     type: looker_bar
     model: vmart1
     explore: inventory_fact
     dimensions: [warehouse_dimension.warehouse_name]
     measures: [inventory_fact.average_qty_in_stock]
-    listen: 
+    listen:
       date: date_dimension.date_date
     sorts: [inventory_fact.average_qty_in_stock desc]
     limit: 500
@@ -144,8 +144,8 @@
     y_axis_tick_density_custom: 5
     show_view_names: false
     hide_legend: false
- 
-  
+
+
   - name: Breakdown_by_warehouse_location
     title: Inventary Breakdown by Warehouse Location
     type: looker_geo_choropleth
@@ -153,7 +153,7 @@
     explore: inventory_fact
     dimensions: [warehouse_dimension.warehouse_state]
     measures: [inventory_fact.average_qty_in_stock]
-    listen: 
+    listen:
       date: date_dimension.date_date
     sorts: [inventory_fact.average_qty_in_stock desc]
     limit: 500
@@ -190,7 +190,7 @@
     dimensions: [date_dimension.date_month, product_dimension.category_description]
     pivots: [product_dimension.category_description]
     measures: [inventory_fact.average_qty_in_stock]
-    listen: 
+    listen:
       date: date_dimension.date_date
     sorts: [date_dimension.date_month]
     limit: 500
@@ -212,4 +212,3 @@
     point_style: none
     y_axis_tick_density_custom: 5
     colors: ['#776fdf','#49cec1','#e9b404','#dc7350','#ed6168']
-  

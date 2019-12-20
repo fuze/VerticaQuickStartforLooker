@@ -1,13 +1,13 @@
 - dashboard: call_center_and_employee_dashboard
   title: Call Center and Employee Dashboard
   layout: grid
-  rows: 
+  rows:
     - elements: [online_sales_by_call_center_region, store_sales_by_employee_region]
       height: 400
     - elements: [top_5_call_centers, top_5_employees]
       height: 400
 
-    
+
   filters:
   - name: date
     title: "Sales period"
@@ -18,15 +18,15 @@
     type: field_filter
     explore: store_sales_fact
     field: store_sales_fact.measure_type
-    default_value: Sales  
+    default_value: Sales
   - name: call_center_class
     title: "Call Center Class"
     type: field_filter
     explore: online_sales_fact
     field: call_center_dimension.cc_class
-    #default_value:   
-  
-    
+    #default_value:
+
+
 
   elements:
   - name: top_5_call_centers
@@ -38,7 +38,7 @@
     measures: [online_sales_fact.measure_total]
     filters:
       online_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       date: date_dimension_sales.date_date
       measure_type: online_sales_fact.measure_type
       call_center_class: call_center_dimension.cc_class
@@ -50,7 +50,7 @@
     colors: ['#706080', '#353b49', '#635189', '#b3a0dd', '#776fdf', '#1ea8df', '#a2dcf3',
     '#49cec1', '#e9b404', '#dc7350', '#ed6168']
 
-    
+
   - name: top_5_employees
     title: "Top 10 Employees in Store Sales"
     type: looker_pie
@@ -60,7 +60,7 @@
     measures: [store_sales_fact.measure_total]
     filters:
       store_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       date: date_dimension.date_date
       measure_type: store_sales_fact.measure_type
     sorts: [store_sales_fact.measure_total desc]
@@ -81,7 +81,7 @@
     measures: [online_sales_fact.measure_total]
     filters:
       online_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       date: date_dimension_sales.date_date
       measure_type: online_sales_fact.measure_type
       call_center_class: call_center_dimension.cc_class
@@ -112,7 +112,7 @@
     measures: [store_sales_fact.measure_total]
     filters:
       store_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       date: date_dimension.date_date
       measure_type: store_sales_fact.measure_type
     sorts: [store_sales_fact.measure_total desc]
@@ -131,4 +131,3 @@
     show_x_axis_ticks: true
     x_axis_scale: auto
     show_null_labels: false
-      

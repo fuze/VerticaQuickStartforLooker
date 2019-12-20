@@ -1,14 +1,14 @@
 - dashboard: vendor_dashboard
   title: Vendor Dashboard
   layout: grid
-  rows: 
+  rows:
     - elements: [on_time_delivery_rate, quantity_accuracy_rate, perfect_order_rate]
       height: 180
     - elements: [year_over_year_comparison, Metric_by_Store_Location]
       height: 400
     - elements: [top_vendors_on_time_delivery_rate, top_vendors_quantity_accuracy_rate, top_vendors_perfect_order_rate]
       height: 230
-    
+
 
   filters:
   - name: date
@@ -26,8 +26,8 @@
     explore: store_orders_fact
     field: store_orders_fact.measure_type
     default_value: "Avg Quantity Delivered"
-    
-  
+
+
   elements:
   - name: on_time_delivery_rate
     title: On-time Delivery Rate
@@ -35,14 +35,14 @@
     model: vmart1
     explore: store_orders_fact
     measures: [store_orders_fact.perfect_expected_date_rate]
-    listen: 
+    listen:
       date: store_orders_fact.date_delivered_date
       #measure_type: online_sales_fact.measure_type
       vendor_name: vendor_dimension.vendor_name
     limit: 500
     column_limit: ''
     font_size: medium
-    
+
   - name: top_vendors_on_time_delivery_rate
     title: Top 5 Vendors in On-time Delivery Rate
     type: table
@@ -50,26 +50,26 @@
     explore: store_orders_fact
     dimensions: [vendor_dimension.vendor_name]
     measures: [store_orders_fact.perfect_expected_date_rate]
-    listen: 
+    listen:
       date: store_orders_fact.date_delivered_date
     sorts: [store_orders_fact.perfect_expected_date_rate desc]
     limit: 5
-    column_limit: '' 
-    
+    column_limit: ''
+
   - name: quantity_accuracy_rate
     title: Quantity Accuracy Rate
     type: single_value
     model: vmart1
     explore: store_orders_fact
     measures: [store_orders_fact.perfect_quantity_rate]
-    listen: 
+    listen:
       date: store_orders_fact.date_delivered_date
       #measure_type: online_sales_fact.measure_type
       vendor_name: vendor_dimension.vendor_name
     limit: 500
     column_limit: ''
     font_size: medium
-    
+
   - name: top_vendors_quantity_accuracy_rate
     title: Top 5 Vendors in Quantity Accuracy Rate
     type: table
@@ -77,12 +77,12 @@
     explore: store_orders_fact
     dimensions: [vendor_dimension.vendor_name]
     measures: [store_orders_fact.perfect_quantity_rate]
-    listen: 
+    listen:
       date: store_orders_fact.date_delivered_date
     sorts: [store_orders_fact.perfect_quantity_rate desc]
     limit: 5
     column_limit: ''
-    
+
 
   - name: perfect_order_rate
     title: Perfect Order Rate
@@ -90,15 +90,15 @@
     model: vmart1
     explore: store_orders_fact
     measures: [store_orders_fact.perfect_order_rate]
-    listen: 
+    listen:
       date: store_orders_fact.date_delivered_date
       #measure_type: online_sales_fact.measure_type
       vendor_name: vendor_dimension.vendor_name
     limit: 500
     column_limit: ''
     font_size: medium
-    
-    
+
+
   - name: top_vendors_perfect_order_rate
     title: Top 5 Vendors in Perfect Order Rate
     type: table
@@ -106,13 +106,13 @@
     explore: store_orders_fact
     dimensions: [vendor_dimension.vendor_name]
     measures: [store_orders_fact.perfect_order_rate]
-    listen: 
+    listen:
       date: store_orders_fact.date_delivered_date
     sorts: [store_orders_fact.perfect_order_rate desc]
     limit: 5
     column_limit: ''
 
-      
+
   - name: year_over_year_comparison
     title: Year over Year Comparison
     type: looker_line
@@ -121,7 +121,7 @@
     dimensions: [store_orders_fact.date_delivered_year, store_orders_fact.date_delivered_month_num]
     pivots: [store_orders_fact.date_delivered_year]
     measures: [store_orders_fact.order_measure]
-    listen: 
+    listen:
       date: store_orders_fact.date_delivered_date
       measure_type: store_orders_fact.measure_type
       vendor_name: vendor_dimension.vendor_name
@@ -141,8 +141,8 @@
     hide_points: true
     colors: ['#776fdf','#49cec1','#e9b404','#dc7350','#ed6168']
 
-   
-   
+
+
   - name: Metric_by_Store_Location
     title: Metric by Store Location
     type: looker_geo_choropleth
@@ -150,7 +150,7 @@
     explore: store_orders_fact
     dimensions: [store_dimension.store_state]
     measures: [store_orders_fact.order_measure]
-    listen: 
+    listen:
       date: store_orders_fact.date_delivered_date
       measure_type: store_orders_fact.measure_type
       vendor_name: vendor_dimension.vendor_name
@@ -163,5 +163,4 @@
     quantize_colors: false
     colors: ['#008000']
     loading: false
-     
-   
+

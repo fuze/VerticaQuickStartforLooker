@@ -1,7 +1,7 @@
 - dashboard: executive_dash
   title: Executive Dashboard
   layout: grid
-  rows: 
+  rows:
     - elements: [store_total, online_total]
       height: 190
     - elements: [store_sales_overtime, online_sales_overtime]
@@ -12,8 +12,8 @@
       height: 400
     - elements: [order_rate]
       height: 400
-      
-      
+
+
   filters:
     - name: date
       title: "Sales period"
@@ -28,8 +28,8 @@
       explore: store_sales_fact
       field: store_sales_fact.measure_type
       default_value: Sales
-      
-      
+
+
   elements:
   - name: store_total
     title: Store Sales Total
@@ -45,14 +45,14 @@
     limit: 500
     column_limit: ''
     font_size: medium
-    
+
   - name: online_total
     title: Online Sales Total
     type: single_value
     model: vmart1
     explore: online_sales_fact
     measures: [online_sales_fact.measure_total]
-    listen: 
+    listen:
       customer_type: customer_dimension.customer_type
       date: date_dimension_sales.date_date
       measure_type: online_sales_fact.measure_type
@@ -60,7 +60,7 @@
     limit: 500
     column_limit: ''
     font_size: medium
-   
+
 
   - name: top_online_products
     title: Online Sales by Product
@@ -71,7 +71,7 @@
     measures: [online_sales_fact.measure_total]
     filters:
       online_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       customer_type: customer_dimension.customer_type
       date: date_dimension_sales.date_date
       measure_type: online_sales_fact.measure_type
@@ -90,7 +90,7 @@
     show_x_axis_ticks: true
     x_axis_scale: auto
     show_null_labels: false
- 
+
   - name: top_store_products
     title: Store Sales by Product
     type: looker_column
@@ -163,7 +163,7 @@
     quantize_colors: false
     colors: ['#008000']
     loading: false
- 
+
   - name: online_sales_overtime
     title: "Online Sales Performance Overtime"
     type: looker_line
@@ -173,7 +173,7 @@
     measures: [online_sales_fact.measure_total]
     filters:
       online_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       customer_type: customer_dimension.customer_type
       date: date_dimension_sales.date_date
       measure_type: online_sales_fact.measure_type
@@ -195,7 +195,7 @@
     x_axis_scale: auto
     point_style: none
     interpolation: linear
-    
+
   - name: store_sales_overtime
     title: Store Sales Performance Overtime
     type: looker_line
@@ -205,7 +205,7 @@
     measures: [store_sales_fact.measure_total]
     filters:
       store_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       customer_type: customer_dimension.customer_type
       date: date_dimension.date_date
       measure_type: store_sales_fact.measure_type
@@ -227,7 +227,7 @@
     x_axis_scale: auto
     point_style: none
     interpolation: linear
-    
+
   - name: order_rate
     title: Perfect Order Rate by vendor
     type: looker_column
@@ -236,7 +236,7 @@
     dimensions: [vendor_dimension.vendor_name]
     measures: [store_orders_fact.perfect_order_rate, store_orders_fact.perfect_quantity_rate,
       store_orders_fact.perfect_expected_date_rate]
-    listen: 
+    listen:
       date: store_orders_fact.date_delivered_date
     sorts: [store_orders_fact.perfect_order_rate desc]
     limit: 500
@@ -257,6 +257,4 @@
     x_axis_scale: auto
     show_null_labels: false
     y_axis_combined: true
-
-    
 

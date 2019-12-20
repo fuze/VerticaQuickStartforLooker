@@ -2,10 +2,10 @@
   title: Online Sales Dashboard
   layout: tile
   tile_size: 100
-    
+
 
   filters:
-  
+
   - name: date
     title: "Sales period"
     type: date_filter
@@ -24,18 +24,18 @@
     type: field_filter
     explore: online_sales_fact
     field: product_dimension.department_description
-    
-    
-    
+
+
+
   elements:
 
-  - name: online_sales_total 
+  - name: online_sales_total
     title: "Online Sales Total"
     type: single_value
     model: vmart1
     explore: online_sales_fact
     measures: [online_sales_fact.measure_total]
-    listen: 
+    listen:
       customer_type: customer_dimension.customer_type
       date: date_dimension_sales.date_date
       measure_type: online_sales_fact.measure_type
@@ -44,7 +44,7 @@
     limit: 500
     column_limit: ''
     font_size: medium
-    
+
   - name: online_sales_overtime
     title: "Online Sales Performance Overtime"
     type: looker_line
@@ -54,7 +54,7 @@
     measures: [online_sales_fact.measure_total]
     filters:
       online_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       customer_type: customer_dimension.customer_type
       date: date_dimension_sales.date_date
       measure_type: online_sales_fact.measure_type
@@ -76,7 +76,7 @@
     x_axis_scale: auto
     point_style: none
     interpolation: linear
-    
+
   - name: online_sales_by_year
     title: 'Online Sales Year over Year Comparison'
     type: looker_line
@@ -88,13 +88,13 @@
     sorts: [date_dimension_sales.calendar_month_number_in_year]
     filters:
       online_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       date: date_dimension_sales.date_date
       customer_type: customer_dimension.customer_type
       measure_type: online_sales_fact.measure_type
     sorts: [date_dimension_sales.calendar_year_quarter]
     limit: 500
-    width: 
+    width:
     height:
     legend_align:
     x_axis_label: 'Month Number'
@@ -108,9 +108,9 @@
     y_axis_max:
     hide_points: true
     colors: ['#635189','#1ea8df','#49cec1','#e9b404','#dc7350','#ed6168']
-   
-    
-    
+
+
+
   - name: regional_sales
     title: "Regional Online Sales"
     type: looker_geo_choropleth
@@ -133,7 +133,7 @@
     quantize_colors: false
     colors: ['#008000']
     loading: false
-  
+
   - name: top_10_customers
     title: "Top 10 customers in Online Sales"
     type: looker_bar
@@ -143,7 +143,7 @@
     measures: [online_sales_fact.measure_total]
     filters:
       online_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       customer_type: customer_dimension.customer_type
       measure_type: online_sales_fact.measure_type
       product_type: product_dimension.department_description
@@ -165,7 +165,7 @@
     x_axis_scale: auto
     show_null_labels: false
 
-  
+
   - name: top_10_products
     title: "Top 10 products in Online Sales"
     type: table
@@ -175,10 +175,10 @@
     measures: [online_sales_fact.measure_total]
     filters:
       online_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       customer_type: customer_dimension.customer_type
       measure_type: online_sales_fact.measure_type
-      product_type: product_dimension.department_description      
+      product_type: product_dimension.department_description
     sorts: [online_sales_fact.measure_total]
     limit: 10
     column_limit: ''
@@ -190,17 +190,17 @@
     explore: online_sales_fact
     dimensions: [promotion_dimension.ad_type]
     measures: [online_sales_fact.measure_total]
-    listen: 
+    listen:
       customer_type: customer_dimension.customer_type
       measure_type: online_sales_fact.measure_type
-      product_type: product_dimension.department_description    
+      product_type: product_dimension.department_description
     sorts: [online_sales_fact.measure_total desc]
     limit: 500
     column_limit: ''
     show_view_names: true
     inner_radius: 50
     colors: ['#635189','#49cec1','#e9b404','#dc7350','#ed6168']
-   
+
 
   - name: call_center_performance
     title: "Call Center Performance in Online Sales"
@@ -209,10 +209,10 @@
     explore: online_sales_fact
     dimensions: [call_center_dimension.cc_name]
     measures: [online_sales_fact.measure_total]
-    listen: 
+    listen:
       customer_type: customer_dimension.customer_type
       measure_type: online_sales_fact.measure_type
-      product_type: product_dimension.department_description   
+      product_type: product_dimension.department_description
     sorts: [online_sales_fact.measure_total desc]
     limit: 500
     column_limit: ''
@@ -229,6 +229,5 @@
     show_x_axis_ticks: true
     x_axis_scale: auto
     show_null_labels: false
-    
-    
-    
+
+

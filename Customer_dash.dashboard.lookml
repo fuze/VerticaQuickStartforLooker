@@ -1,7 +1,7 @@
 - dashboard: customer_dashboard
   title: Customer Dashboard
   layout: grid
-  rows: 
+  rows:
     - elements: [total_online_sales, total_store_sales]
       height: 190
     - elements: [online_sales_by_year, store_sales_by_year]
@@ -9,8 +9,8 @@
     - elements: [top_online_customers, top_store_customers]
       #width: 300
       height: 400
- 
-    
+
+
   filters:
   - name: date
     title: "Sales period"
@@ -27,8 +27,8 @@
     type: field_filter
     explore: store_sales_fact
     field: store_sales_fact.measure_type
-    default_value: Sales  
-    
+    default_value: Sales
+
 
   elements:
   - name: total_online_sales
@@ -39,7 +39,7 @@
     measures: [online_sales_fact.measure_total]
     filters:
       online_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       customer_type: customer_dimension.customer_type
       date: date_dimension_sales.date_date
       measure_type: online_sales_fact.measure_type
@@ -47,7 +47,7 @@
     limit: 500
     width: 6
     #height: 2
-    
+
   - name: total_store_sales
     title: 'Total Store Sales'
     type: single_value
@@ -57,15 +57,15 @@
     measures: [store_sales_fact.measure_total]
     filters:
       store_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       customer_type: customer_dimension.customer_type
       date: date_dimension.date_date
       measure_type: store_sales_fact.measure_type
       #product_type: product_dimension.store_department_description
     limit: 500
-    width: 6 
+    width: 6
     #height: 2
-    
+
   - name: online_sales_by_year
     title: 'Online Sales Performance (YoY)'
     type: looker_line
@@ -77,12 +77,12 @@
     sorts: [date_dimension_sales.calendar_month_number_in_year]
     filters:
       online_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       date: date_dimension_sales.date_date
       customer_type: customer_dimension.customer_type
       measure_type: online_sales_fact.measure_type
     limit: 500
-    width: 
+    width:
     height:
     legend_align:
     x_axis_label: 'Month Number'
@@ -96,9 +96,9 @@
     y_axis_max:
     hide_points: true
     colors: ['#353b49','#776fdf','#49cec1','#e9b404','#dc7350','#ed6168']
-  
-    
-    
+
+
+
   - name: store_sales_by_year
     title: 'Store Sales Performance (YoY)'
     type: looker_line
@@ -110,7 +110,7 @@
     sorts: [date_dimension.calendar_month_number_in_year]
     filters:
       store_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       date: date_dimension.date_date
       customer_type: customer_dimension.customer_type
       measure_type: store_sales_fact.measure_type
@@ -128,7 +128,7 @@
     y_axis_min:
     y_axis_max:
     colors: ['#353b49','#776fdf','#49cec1','#e9b404','#dc7350','#ed6168']
-  
+
   - name: top_online_customers
     title: "Top 10 Online Customers"
     type: looker_bar
@@ -138,7 +138,7 @@
     measures: [online_sales_fact.measure_total]
     filters:
       online_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       customer_type: customer_dimension.customer_type
       measure_type: online_sales_fact.measure_type
     sorts: [online_sales_fact.measure_total desc]
@@ -157,8 +157,8 @@
     show_x_axis_label: true
     show_x_axis_ticks: true
     x_axis_scale: auto
-    show_null_labels: false  
-    
+    show_null_labels: false
+
   - name: top_store_customers
     title: "Top 10 Store Customers"
     type: looker_bar
@@ -168,7 +168,7 @@
     measures: [store_sales_fact.measure_total]
     filters:
       store_sales_fact.transaction_type: '"purchase"'
-    listen: 
+    listen:
       customer_type: customer_dimension.customer_type
       date: date_dimension.date_date
       measure_type: store_sales_fact.measure_type
@@ -187,5 +187,4 @@
     show_x_axis_label: true
     show_x_axis_ticks: true
     x_axis_scale: auto
-    show_null_labels: false    
-    
+    show_null_labels: false
