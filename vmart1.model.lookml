@@ -5,6 +5,7 @@
 
 
 - explore: store_sales_fact
+  hidden: true
   fields: [ALL_FIELDS*, -product_dimension.department_description]
   joins:
     - join: customer_dimension
@@ -35,6 +36,7 @@
       type: inner
       
 - explore: online_sales_fact
+  hidden: true
   fields: [ALL_FIELDS*, -product_dimension.store_department_description]
   joins: 
     - join: customer_dimension
@@ -73,6 +75,7 @@
       type: inner
        
 - explore: store_orders_fact
+  hidden: true
   joins:
     - join: vendor_dimension
       foreign_key: vendor_key
@@ -84,6 +87,7 @@
 
 
 - explore: inventory_fact
+  hidden: true
   joins:
     - join: product_dimension
       sql_on: inventory_fact.product_key = product_dimension.product_key and inventory_fact.product_version = product_dimension.product_version
